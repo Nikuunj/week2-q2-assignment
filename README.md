@@ -2,7 +2,17 @@
 
 spl 
 
+## SPL
+
+![spl](./asserts/spl.png)
+
+
 mint address - `7asmqSQQVhydjZYDAWJm2mNpEvVYt7e2cpJ6v5gPV2y7`
+
+
+## NFTs
+
+![nft](./asserts/nft.png)
 
 nft address - `8FruRQm8sFz4isCkdC4f8bEBvhDRJRTvFX2Apn3jNyfA`
 
