@@ -4,6 +4,8 @@ spl
 
 mint address - `7asmqSQQVhydjZYDAWJm2mNpEvVYt7e2cpJ6v5gPV2y7`
 
+nft address - `8FruRQm8sFz4isCkdC4f8bEBvhDRJRTvFX2Apn3jNyfA`
+
 To install dependencies:
 
 ```bash
