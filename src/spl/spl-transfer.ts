@@ -1,6 +1,6 @@
 import { address, appendTransactionMessageInstruction, appendTransactionMessageInstructions, assertIsTransactionWithBlockhashLifetime, createKeyPairSignerFromBytes, createSolanaRpc, createSolanaRpcSubscriptions, createTransactionMessage, getChannelPoolingChannelCreator, getSignatureFromTransaction, sendAndConfirmTransactionFactory, setTransactionMessageFeePayer, setTransactionMessageFeePayerSigner, setTransactionMessageLifetimeUsingBlockhash, signTransactionMessageWithSigners } from "@solana/kit";
 import wallet from "../../wallet/wallet.json";
-import { findAssociatedTokenPda, getCreateAssociatedTokenInstructionAsync, getTransferCheckedInstruction, TOKEN_PROGRAM_ADDRESS } from "@solana-program/token";
+import { fetchToken, findAssociatedTokenPda, getCreateAssociatedTokenInstructionAsync, getTransferCheckedInstruction, TOKEN_PROGRAM_ADDRESS } from "@solana-program/token";
 
 const mintAdress = address("7asmqSQQVhydjZYDAWJm2mNpEvVYt7e2cpJ6v5gPV2y7")
 
@@ -8,7 +8,7 @@ async function sendToken() {
    const rpc = createSolanaRpc("https://api.devnet.solana.com");
    const rpcSubscriptions = createSolanaRpcSubscriptions("wss://api.devnet.solana.com");
 
-   const to = address("29Lh9sr5Q6baHvtCbXTRZS2nWit5zTMS81UeiuqBn5pM");
+   const to = address("AC5RDfQFmDS1deWZos921JfqscXdByf8BKHs5ACWjtW2");
 
    const uint8keypair = new Uint8Array(wallet);
    const signer = await createKeyPairSignerFromBytes(uint8keypair);
@@ -56,10 +56,22 @@ async function sendToken() {
 
    const msgWithLife = setTransactionMessageLifetimeUsingBlockhash(latestBlockhash, msgWithPayer);
 
-   const txMsg = appendTransactionMessageInstructions(
-      [createAtaTx, trxTx],
-      msgWithLife
-   );
+   let txMsg;
+   try {
+      const ataDetails = await fetchToken(rpc, toAta);
+      console.log(ataDetails);
+
+      txMsg = appendTransactionMessageInstructions(
+         [createAtaTx, trxTx],
+         msgWithLife
+      );
+
+   } catch(error) {
+      txMsg = appendTransactionMessageInstructions(
+         [createAtaTx, trxTx],
+         msgWithLife
+      );
+   }
 
    const signedTx = await signTransactionMessageWithSigners(txMsg);
 
