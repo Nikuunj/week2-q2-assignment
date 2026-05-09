@@ -62,7 +62,7 @@ async function attachMetadata(mintAddress: PublicKey) {
 }
 
 
-async function uploadImage(): Promise<String> {
+export async function uploadImage(): Promise<String> {
   const image = await readFile('./asserts/mrcool.png')
 
   const file = createGenericFile(image, "generug.png", {
