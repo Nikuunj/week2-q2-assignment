@@ -1,5 +1,9 @@
 # spl-nft
 
+spl 
+
+mint address - `7asmqSQQVhydjZYDAWJm2mNpEvVYt7e2cpJ6v5gPV2y7`
+
 To install dependencies:
 
 ```bash
